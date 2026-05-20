@@ -1,0 +1,30 @@
+import { useEffect } from 'react';
+
+const Cart = () => {
+
+    const cartEndPoint = "https://fakestoreapi.com/carts/1";
+    const productEndPoint = "https://fakestoreapi.com/products/";
+
+    useEffect(() => {
+        getCartInfo()
+    }, [])
+
+    const getCartInfo = () => {
+
+        fetch(cartEndPoint)
+            .then((res) => res.json()
+                .then((data) => getProductInfo(data.products))
+                .catch((err) => console.log("err::", err)))
+
+    }
+
+    const getProductInfo = (products) => {
+
+        const productPromiseArr = products.map(item => fetch(productEndPoint + item.productId).then((res) => res.json()));
+
+        Promise.all(productPromiseArr).then((data) => console.log(data).catch(()=>console.log("Error in product API")))
+
+    }
+}
+
+export default Cart;
