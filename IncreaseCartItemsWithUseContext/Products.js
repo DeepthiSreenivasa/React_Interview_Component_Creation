@@ -1,31 +1,26 @@
-// ProductCards.js
+import { useEffect, useState } from 'react';
+import ProductCards from './ProductCards'
 
-import { useContext } from 'react';
-import CartContext from './CartContext'
+const Products = () => {
 
-const ProductCards = ({ productDetails }) => {
+    const [products, setProducts] = useState([]);
 
-    if (!productDetails) return null;
+    useEffect(() => {
+        getProductsList();
+    }, [])
 
-    const { quantity , setQuantity } = useContext(CartContext);
 
-    const { id, title, image, price } = productDetails;
-
-    function addToCart() {
-        setQuantity((prev)=>prev + 1)
+    function getProductsList() {
+        fetch("https://fakestoreapi.com/products/").then((res) => res.json()).then((data) => {
+            setProducts(data)
+        })
     }
 
     return <>
-        <div className="cardContainer">
-            <div className="card" key={id}>
-                <h6>{title}</h6>
-                <img src={image} alt="Image Unavailable"></img>
-                <div>₹{price}</div>
-                <button className='button' onClick={addToCart} >Add To Cart</button>
-            </div>
-        </div>
-
+        {products.map(item => <ProductCards productDetails={item}  ></ProductCards>)}
     </>
+
+
 }
 
-export default ProductCards;
+export default Products;
