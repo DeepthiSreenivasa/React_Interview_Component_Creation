@@ -1,0 +1,40 @@
+import { useEffect, useState } from 'react';
+export default function App() {
+
+  const [blogDetails, setBlogDetails] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("blogID");
+
+
+  const blogDetailsUrl = "https://coderbyte.com/api/challenges/json/all-posts";
+
+
+  useEffect(() => {
+    getBlogDetails();
+  }, [])
+
+
+  const getBlogDetails = () => {
+    fetch(blogDetailsUrl).then((res) => res.json()).then((data) => {
+      sortDetails(data);
+    });
+  }
+
+  const sortDetails = (data) => {
+    sortedData = [...data].sort((a, b) => {
+      //return a.title.localeCompare(b.title);
+      return a.id - b.id;
+    });
+    setBlogDetails(sortedData)
+  }
+
+  return (<><select onChange={(e) => setSelectedOption(e.target.value)}>
+    <option value="blogID"  >IDs</option>
+    <option value="blogTitle">Blog Titles</option>
+  </select>
+    <ol>
+      {selectedOption === "blogID" ? blogDetails?.map(item => <li key={item.id}>{item.id}</li>) : blogDetails?.map(item => <li key={item.id}>{item.title}</li>)}
+    </ol>
+  </>
+
+  )
+}
