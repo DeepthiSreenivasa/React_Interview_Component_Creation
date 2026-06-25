@@ -14,3 +14,32 @@
 </body>
 
 </html>
+*******************JS***************
+function getData() {
+    console.log("Get Data")
+}
+
+function createThrottle() {
+
+
+    let throttle = false; //isThrottled is initially false.
+
+    return function () {
+        if (throttle) {
+            return; //Any calls within the next 3 seconds are ignored.
+        }
+
+        getData(); //callback() executes.
+        throttle = true; //isThrottled becomes true
+
+
+        setTimeout(() => {
+            throttle = false; //After 3 seconds, isThrottled is reset to false, allowing the next call.
+        }, 3000)
+
+    }
+}
+
+let searchWithThrottle = createThrottle();
+
+
