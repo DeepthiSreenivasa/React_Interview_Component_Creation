@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <main class="card">
+        <h1>Hello!</h1>
+        <input onkeydown="searchWithThrottle()" />
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
