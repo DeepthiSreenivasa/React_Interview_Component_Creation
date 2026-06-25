@@ -1,0 +1,41 @@
+/************HTML***********/
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Parcel Sandbox</title>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <div id="app"></div>
+ 
+  <input onkeyup="getDataFromApi()" />
+  <script src="index.js">
+  
+  </script>
+</body>
+
+</html>
+
+
+
+/***********JS*************/
+function getDataFromApi() {
+    console.log("Data from API")
+}
+
+
+function createDebounce(callBack, delay) {
+    let timer;
+
+    return function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            callBack()
+        }, delay)
+    }
+
+}
+
+let debounceSearch = createDebounce(getDataFromApi, 3000)
