@@ -4,6 +4,7 @@ import {
 } from "react-router-dom"; /***** MISTAKE react router dom has to be installed */
 import Home from "./Home";
 import Product from "./Product";
+import ProductDetails from "./ProductDetails";
 
 const Body = () => {
   {
@@ -15,6 +16,7 @@ const Body = () => {
       element: <Home />,
     },
     { path: "/products", element: <Product /> },
+    { path: "/productDetail/:id", element: <ProductDetails /> },
   ]);
 
   return <RouterProvider router={appRouters}></RouterProvider>;
