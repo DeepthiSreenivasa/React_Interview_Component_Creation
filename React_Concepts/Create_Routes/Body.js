@@ -7,6 +7,7 @@ import Home from "./Home";
 import Product from "./Product";
 import ProductDetails from "./ProductDetails";
 import Error from "./Error";
+import App from "./App";
 
 const Body = () => {
   {
@@ -14,22 +15,25 @@ const Body = () => {
   }
   const appRouters = createBrowserRouter([
     {
-      errorElement: <Error />, //Use errorElement as the key and value will be the Error element
+      path: "/",
+      element: <App />, //Mistake Added element App here as parent to fix router-outlet
+      //Mistakke Use errorElement as the key and value will be the Error element
+      errorElement: <Error />,
       children: [
         //Mistake you have to place the entire objects insdie an array names childres
         {
-          path: "/",
+          index: true,
           element: (
-            <Navigate to="/home" replace />
+            <Navigate to="home" replace />
           ) /*** To redirect Navigation to home when the path is fully empty */,
         },
         {
-          path: "/home",
+          path: "home",
           element: <Home />,
         },
-        { path: "/products", element: <Product /> },
+        { path: "products", element: <Product /> },
         {
-          path: "/ProductDetail/:id",
+          path: "ProductDetail/:id",
           element: <ProductDetails />,
         },
       ],
