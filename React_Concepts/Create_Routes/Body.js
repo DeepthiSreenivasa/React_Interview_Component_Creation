@@ -1,6 +1,7 @@
 import {
   createBrowserRouter,
   RouterProvider,
+  Navigate,
 } from "react-router-dom"; /***** MISTAKE react router dom has to be installed */
 import Home from "./Home";
 import Product from "./Product";
@@ -12,11 +13,17 @@ const Body = () => {
   }
   const appRouters = createBrowserRouter([
     {
+      path: "/",
+      element: (
+        <Navigate to="/Home" replace />
+      ) /*** To redirect Navigation to home when the path is fully empty */,
+    },
+    {
       path: "/home",
       element: <Home />,
     },
     { path: "/products", element: <Product /> },
-    { path: "/productDetail/:id", element: <ProductDetails /> },
+    { path: "/ProductDetail/:id", element: <ProductDetails /> },
   ]);
 
   return <RouterProvider router={appRouters}></RouterProvider>;
