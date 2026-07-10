@@ -1,8 +1,14 @@
-import { RouterProvider, createBrowserRoutes } from "react-router-dom";
 import Body from "./Body";
+import Header from "./Header";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
-  return <Body></Body>;
+  return (
+    <>
+      <Header></Header>
+      <Outlet></Outlet>
+    </>
+  );
 };
 
 export default App;
