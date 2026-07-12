@@ -1,0 +1,83 @@
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+const Product = () => {
+  const [productDetails, setProductDetails] = useState([]);
+  const productURL = "https://dummyjson.com/products";
+
+  useEffect(() => {
+    getProductDetails();
+  }, []);
+
+  const getProductDetails = async () => {
+    console.log("Into getProductDetails::");
+    let data = await fetch(productURL);
+    dataFromApi = await data.json();
+    console.log("dataFromApi::", dataFromApi);
+
+    setProductDetails(dataFromApi);
+    console.log("productDetails::", productDetails);
+  };
+
+  const filterData = () => {
+    let filteredItems = productDetails?.products.filter(
+      (item) => item.rating > 4
+    );
+    console.log(filteredItems);
+    setProductDetails({ ...productDetails, products: filteredItems }); //Mistake you have to send only products to the template so you have to speread the array inside an object and then add another key products and then assign filteredItems
+  };
+
+  const sortBasedOnNames = () => {
+    let sortedItems = productDetails.products.sort((a, b) =>
+      a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+    ); //Mistake for soring you have to always use localecompare and 2 items a,b
+
+    setProductDetails({ ...productDetails, products: sortedItems }); //Note : Remeber this way of adding a new key to the array
+    console.log("sortedItems::", sortedItems);
+  };
+
+  const reset = () => {
+    getProductDetails();
+  };
+
+  {
+    return productDetails?.products?.length ? (
+      <>
+        <h1>This is Product Page</h1>
+        <button
+          onClick={() => {
+            //Mistake : React uses onClick not jus click also u missed usingcamel case
+            filterData();
+          }}
+        >
+          Rating Greater than 4
+        </button>
+        <button
+          onClick={() => {
+            sortBasedOnNames();
+          }}
+        >
+          Sort Based on Names
+        </button>
+        <button
+          onClick={() => {
+            reset();
+          }}
+        >
+          Reset
+        </button>
+        <ul>
+          {productDetails.products.map((item) => (
+            <li>
+              <Link to={`/ProductDetail/${item.id}`}>{item.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </>
+    ) : (
+      <h1>No Data Found</h1>
+    );
+  }
+};
+
+export default Product;
