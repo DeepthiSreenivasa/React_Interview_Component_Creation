@@ -24,6 +24,9 @@ const Body = () => {
         //Mistake you have to place the entire objects insdie an array names childres
         {
           index: true,
+          //Mistake : you forgot what happens when empty route is given
+          //You have to add index, create Navigate element and also you
+          // have to create another path and element pair like below
           element: (
             <Navigate to="home" replace />
           ) /*** To redirect Navigation to home when the path is fully empty */,
