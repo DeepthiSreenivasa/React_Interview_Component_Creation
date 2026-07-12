@@ -18,7 +18,8 @@ const Body = () => {
       path: "/",
       element: <App />, //Mistake Added element App here as parent to fix router-outlet
       //Mistakke Use errorElement as the key and value will be the Error element
-      errorElement: <Error />,
+      errorElement: <Error />,    
+      ///Mistake : you forgot the keyname "errorElement" also it is jus a single key value pair
       children: [
         //Mistake you have to place the entire objects insdie an array names childres
         {
