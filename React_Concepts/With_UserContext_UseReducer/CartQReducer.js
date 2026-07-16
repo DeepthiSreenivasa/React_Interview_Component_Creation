@@ -1,4 +1,4 @@
-const CartQReducer = (state, action) => {
+const CartQReducer = (state, action) => { //reducer file is jus a normal function with switch case
   console.log("Reducer called", action);
   switch (action.type) {
     case "ADD_ITEMS": {
