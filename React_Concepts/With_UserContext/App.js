@@ -43,7 +43,7 @@ export default function App() {
 
   return (
     <UserDetailsContext.Provider //Mistake this should be capital P in provider
-      value={{
+      value={{ //Mistake : you forgot the keyword value as its props so basically the key for this prop is just "value"
         userFirstName: userFirstName,
         setUserFirstName: (name) => setUserFirstName(name), //Mistake you have to call the setter function again from Login page
       }}
