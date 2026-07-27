@@ -1,0 +1,10 @@
+<h1>This is hello component</h1>
+<form>
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    name="searchText"
+    (input)="getSearchText($event)"
+  />
+</form>
+<div *ngFor="let product of products">dsds {{ product.description }}</div>
