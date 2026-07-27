@@ -15,17 +15,17 @@ import {
   templateUrl: './hello.component.html',
   styleUrls: ['./hello.component.css'],
   standalone: true,
-  imports: [HttpClientModule, CommonModule, FormsModule],
+  imports: [HttpClientModule, CommonModule, FormsModule], //Just directly import here
 })
 export class HelloComponent implements OnInit {
-  public http: HttpClient = inject(HttpClient);
+  public http: HttpClient = inject(HttpClient); //Use inject in HttpClient
   public products: any[] = [];
-  public searchText$ = new Subject<String>();
+  public searchText$ = new Subject<String>(); //Sinceswitch map needs a observable you need to pass a subject
   public searchText: String = '';
 
   ngOnInit() {
     this.searchText$
-      .pipe(
+      .pipe( //The pipe would have dt, duc, switchMap should return http then subscribe to switch map 
         debounceTime(100),
         distinctUntilChanged(),
         switchMap((searchText) => {
