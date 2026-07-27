@@ -15,7 +15,7 @@ import {
   templateUrl: './hello.component.html',
   styleUrls: ['./hello.component.css'],
   standalone: true,
-  imports: [HttpClientModule, CommonModule, FormsModule], //Just directly import here
+  imports: [HttpClientModule, CommonModule, FormsModule], //Just directly import here FormModule needed for ngModel
 })
 export class HelloComponent implements OnInit {
   public http: HttpClient = inject(HttpClient); //Use inject in HttpClient
