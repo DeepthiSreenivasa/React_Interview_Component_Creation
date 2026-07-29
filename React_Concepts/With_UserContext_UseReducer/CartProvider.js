@@ -12,7 +12,7 @@ const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CartQReducer, initialState);
 
   return (
-    <CartQContext.Provider value={{ quantity: state.quantity, dispatch }}>
+    <CartQContext.Provider value={{ quantity: state.quantity, dispatch }}> //dont forget that you have to pass value as a prop here
       {children}
     </CartQContext.Provider>
   );
