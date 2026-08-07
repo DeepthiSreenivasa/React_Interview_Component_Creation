@@ -51,6 +51,7 @@ const StarRating = () => {
             : "☆"}
         </span>
       ))}
+      <span> Your Rated :: {ratedStars.length} </span>
     </>
   );
 };
