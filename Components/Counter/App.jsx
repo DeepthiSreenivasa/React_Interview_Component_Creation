@@ -25,3 +25,8 @@ export default function App() {
 //rather you should useEffect in child and implement it as a side effect
 //But with all these the component is still uncontrolled as the state is declared inside the child
 //component
+//Step 9 : Make it controlled component
+//To make it controlled component,
+// the state variable should move to the parent component
+// pass state as a prop and setState as a callback
+
