@@ -1,48 +1,28 @@
-import { useState } from "react";
-
-const Accordian = () => {
-  const data = [
-    { title: "React", info: "JS Lib", isOpen: true },
-    { title: "Angular", info: "JS Framework", isOpen: true },
-    { title: "VanilaJS", info: "N/A", isOpen: true },
-  ];
-
-  const [panelData, setPanelData] = useState(data);
-
-  const toggleInfoPanel = (index) => {
-    setPanelData((prev) =>
-      [...prev].map((item, i) =>
-        i === index ? { ...item, isOpen: !item.isOpen } : item
-      )
-    );
+const Accordian = ({ accordionData = [], openItemId, onChange }) => {
+  const toggleAccordian = (id) => {
+    let changedId = openItemId === id ? null : id;
+    onChange(changedId);
   };
 
-  const allClose = () => {
-    setPanelData((prev) =>
-      [...prev].map((item) => {
-        return { ...item, isOpen: false };
-      })
-    );
-  };
-
-  const allOpen = () => {
-    setPanelData((prev) => (prev = [...data]));
-  };
+  if (!accordionData.length) {
+    return <div>No Data</div>;
+  }
 
   return (
     <>
-      {panelData.map((item, index) => (
-        <>
-          <div className="title">
-            {item.title}{" "}
-            <button onClick={() => toggleInfoPanel(index)}> > </button>
-          </div>
-          {item.isOpen && <div className="info">{item.info}</div>}
-        </>
+      <h1>This is Accordian Page</h1>
+      {accordionData.map((item) => (
+        <div key={item.id}>
+          <div>{item.title}</div>
+          <button onClick={() => toggleAccordian(item.id)}>
+            {openItemId === item.id ? "-" : "+"}
+          </button>
+          {openItemId === item.id && <div>{item.content}</div>}
+          ____________________________________
+        </div>
       ))}
-      <button onClick={() => allOpen()}>All Open</button>
-      <button onClick={() => allClose()}>All Close</button>
     </>
   );
 };
+
 export default Accordian;
