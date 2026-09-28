@@ -205,3 +205,205 @@ console.log("H");// A H  E G B C F D
 
 
 *******************************************************QUESTION - 11***************************************************************************
+console.log("1");
+
+setTimeout(() => {
+    console.log("2");
+
+    Promise.resolve().then(() => {
+        console.log("3");
+    });
+
+    setTimeout(() => {
+        console.log("4");
+    }, 0);
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("5");
+
+    setTimeout(() => {
+        console.log("6");
+    }, 0);
+
+    Promise.resolve().then(() => {
+        console.log("7");
+    });
+});
+
+setTimeout(() => {
+    console.log("8");
+}, 0);
+
+console.log("9");
+
+//1 9 5 7 2 3 8 6 4
+*******************************************************QUESTION - 12***************************************************************************
+console.log("1");
+
+Promise.resolve()
+    .then(() => {
+        console.log("2");
+
+        return Promise.resolve();
+    })
+    .then(() => {
+        console.log("3");
+    });
+
+Promise.resolve().then(() => {
+    console.log("4");
+});
+
+console.log("5");
+
+// 1 5 2 4 3
+*******************************************************QUESTION - 13***************************************************************************
+
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+
+    Promise.resolve().then(() => {
+        console.log("C");
+    });
+
+    Promise.resolve().then(() => {
+        console.log("D");
+    });
+
+    console.log("E");
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("F");
+});
+
+setTimeout(() => {
+    console.log("G");
+}, 0);
+
+console.log("H");
+
+//A H F B E C D G
+
+*******************************************************QUESTION - 14***************************************************************************
+
+
+setTimeout(() => {
+    console.log("A");
+
+    Promise.resolve()
+        .then(() => {
+            console.log("B");
+
+            setTimeout(() => {
+                console.log("C");
+            }, 0);
+        })
+        .then(() => {
+            console.log("D");
+        });
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("E");
+});
+
+console.log("F");
+
+// F E A B D C
+*******************************************************QUESTION - 15***************************************************************************
+
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+
+    Promise.resolve()
+        .then(() => {
+            console.log("C");
+
+            setTimeout(() => {
+                console.log("D");
+            }, 0);
+        })
+        .then(() => {
+            console.log("E");
+        });
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("F");
+
+    setTimeout(() => {
+        console.log("G");
+    }, 0);
+});
+
+console.log("H");
+
+//A H F B C E G D
+*******************************************************QUESTION - 16***************************************************************************
+
+console.log("1");
+
+setTimeout(() => {
+    console.log("2");
+
+    Promise.resolve().then(() => {
+        console.log("3");
+
+        setTimeout(() => {
+            console.log("4");
+        }, 0);
+    });
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("5");
+
+    setTimeout(() => {
+        console.log("6");
+    }, 0);
+
+    Promise.resolve().then(() => {
+        console.log("7");
+    });
+});
+
+setTimeout(() => {
+    console.log("8");
+}, 0);
+
+console.log("9");
+// 1 9 5 7 2 3 8 6 4
+
+*******************************************************QUESTION - 16***************************************************************************
+
+Promise.resolve()
+    .then(() => {
+        console.log("A");
+
+        return Promise.resolve("B");
+    })
+    .then((value) => {
+        console.log(value);
+
+        setTimeout(() => {
+            console.log("C");
+        }, 0);
+
+        return "D";
+    })
+    .then((value) => {
+        console.log(value);
+    });
+
+setTimeout(() => {
+    console.log("E");
+}, 0);
+
+console.log("F");
+
