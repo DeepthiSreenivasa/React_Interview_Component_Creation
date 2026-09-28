@@ -1,0 +1,113 @@
+******************************************************Question 1******************************************************
+import { useState } from "react";
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
+    setCount(count + 1);
+    setCount(count + 1);
+  };
+
+  return (
+    <>
+      <h2>{count}</h2>
+      <button onClick={handleClick}>Increase</button>
+    </>
+  );
+};
+
+export default Counter;
+
+// 1 , becuase there are no functional updaters
+*****************************************************Question 2**********************************************************
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
+
+    setTimeout(() => {
+      setCount(count + 1);
+    }, 1000);
+  };
+
+  return (
+    <>
+      <h2>{count}</h2>
+      <button onClick={handleClick}>Increase</button>
+    </>
+  );
+};
+
+//1 1 => becuase no fucntional updater user and the settimeout closes over the previous snapshot
+
+*************************************************Question 3*************************************************************
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setTimeout(() => {
+      setCount(prev => prev + 1);
+    }, 1000);
+
+    setTimeout(() => {
+      setCount(prev => prev + 1);
+    }, 2000);
+  };
+
+  return (
+    <>
+      <h2>{count}</h2>
+      <button onClick={handleClick}>Start</button>
+    </>
+  );
+};
+
+//1 2
+
+*************************************************Question 4*************************************************************
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(prev => prev + 1);
+
+    setTimeout(() => {
+      setCount(prev => prev + 1);
+    }, 1000);
+
+    setTimeout(() => {
+      setCount(prev => prev + 1);
+    }, 1000);
+  };
+
+  return (
+    <>
+      <h2>{count}</h2>
+      <button onClick={handleClick}>Increase</button>
+    </>
+  );
+};
+
+******************************************************Question 5********************************************************
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
+
+    setTimeout(() => {
+      setCount(count + 1);
+      setCount(prev => prev + 1);
+    }, 1000);
+  };
+
+  return (
+    <>
+      <h2>{count}</h2>
+      <button onClick={handleClick}>Increase</button>
+    </>
+  );
+};
