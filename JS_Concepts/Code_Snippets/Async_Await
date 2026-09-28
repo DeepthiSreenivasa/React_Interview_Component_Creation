@@ -210,3 +210,26 @@ setTimeout(() => {
 }, 0);
 
 console.log("I");
+
+***********************************************************Question 11**********************************************************************
+console.log("1");
+
+async function getData() {
+  console.log("2");
+
+  const result = await Promise.resolve("Hello");
+
+  console.log("3", result);
+
+  setTimeout(() => {
+    console.log("4");
+  }, 0);
+
+  return "Done";
+}
+
+getData().then((result) => {
+  console.log("5", result);
+});
+
+console.log("6");
