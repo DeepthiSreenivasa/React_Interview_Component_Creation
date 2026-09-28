@@ -70,8 +70,143 @@ test();
 console.log("7");
 //1 2 7 3 6 5 4
 ***********************************************************Question 5**********************************************************************
+console.log("1");
+
+async function test() {
+  await Promise.resolve();
+
+  setTimeout(() => {
+    console.log("2");
+  }, 0);
+
+  console.log("3");
+}
+
+test();
+
+setTimeout(() => {
+  console.log("4");
+}, 0);
+
+console.log("5");
 ***********************************************************Question 6**********************************************************************
+async function test() {
+  try {
+    await Promise.reject("Error");
+
+    console.log("A");
+  } catch (error) {
+    console.log("B");
+
+    setTimeout(() => {
+      console.log("C");
+    }, 0);
+  }
+
+  console.log("D");
+}
+
+console.log("E");
+
+test();
+
+console.log("F");
 ***********************************************************Question 7**********************************************************************
+async function test() {
+  console.log("1");
+
+  const result = await Promise.all([
+    Promise.resolve("2"),
+    Promise.resolve("3")
+  ]);
+
+  console.log(result);
+
+  setTimeout(() => {
+    console.log("4");
+  }, 0);
+}
+
+console.log("5");
+
+test();
+
+console.log("6");
 ***********************************************************Question 8**********************************************************************
+console.log("A");
+
+async function test() {
+  console.log("B");
+
+  await Promise.resolve();
+
+  console.log("C");
+
+  Promise.resolve().then(() => {
+    console.log("D");
+  });
+
+  console.log("E");
+}
+
+test();
+
+console.log("F");
 ***********************************************************Question 9**********************************************************************
+console.log("1");
+
+async function test() {
+  console.log("2");
+
+  await Promise.resolve();
+
+  console.log("3");
+
+  setTimeout(() => {
+    console.log("4");
+  }, 0);
+
+  Promise.resolve().then(() => {
+    console.log("5");
+  });
+}
+
+test();
+
+setTimeout(() => {
+  console.log("6");
+}, 0);
+
+console.log("7");
 ***********************************************************Question 10**********************************************************************
+console.log("A");
+
+async function test() {
+  console.log("B");
+
+  await Promise.resolve();
+
+  console.log("C");
+
+  setTimeout(() => {
+    console.log("D");
+
+    Promise.resolve().then(() => {
+      console.log("E");
+    });
+  }, 0);
+
+  Promise.resolve().then(() => {
+    console.log("F");
+  });
+
+  console.log("G");
+}
+
+test();
+
+setTimeout(() => {
+  console.log("H");
+}, 0);
+
+console.log("I");
