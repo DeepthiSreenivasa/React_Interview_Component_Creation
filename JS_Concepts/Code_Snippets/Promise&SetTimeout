@@ -381,29 +381,75 @@ console.log("9");
 // 1 9 5 7 2 3 8 6 4
 
 *******************************************************QUESTION - 16***************************************************************************
-
-Promise.resolve()
-    .then(() => {
-        console.log("A");
-
-        return Promise.resolve("B");
-    })
-    .then((value) => {
-        console.log(value);
-
-        setTimeout(() => {
-            console.log("C");
-        }, 0);
-
-        return "D";
-    })
-    .then((value) => {
-        console.log(value);
-    });
+console.log("1");
 
 setTimeout(() => {
-    console.log("E");
+    console.log("2");
+
+    Promise.resolve()
+        .then(() => {
+            console.log("3");
+
+            Promise.resolve().then(() => {
+                console.log("4");
+            });
+        })
+        .then(() => {
+            console.log("5");
+        });
 }, 0);
 
-console.log("F");
+Promise.resolve().then(() => {
+    console.log("6");
 
+    setTimeout(() => {
+        console.log("7");
+    }, 0);
+});
+
+console.log("8");
+
+//1 8 6 2 3 4 5 7 => Nested Promises gets executed continuously
+
+*******************************************************QUESTION - 17***************************************************************************
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+
+    Promise.resolve().then(() => {
+        console.log("C");
+
+        setTimeout(() => {
+            console.log("D");
+        }, 0);
+
+        Promise.resolve().then(() => {
+            console.log("E");
+        });
+    });
+
+    setTimeout(() => {
+        console.log("F");
+    }, 0);
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("G");
+
+    setTimeout(() => {
+        console.log("H");
+    }, 0);
+
+    Promise.resolve().then(() => {
+        console.log("I");
+    });
+});
+
+setTimeout(() => {
+    console.log("J");
+}, 0);
+
+console.log("K");
+
+//A K G I B C E J H F D
