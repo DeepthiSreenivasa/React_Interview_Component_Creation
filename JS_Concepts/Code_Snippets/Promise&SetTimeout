@@ -1,0 +1,207 @@
+*******************************************************QUESTION - 1***************************************************************************
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+}, 0);
+
+console.log("C");
+
+// A C B => execute syn first then async
+*******************************************************QUESTION - 2***************************************************************************
+console.log("A");
+
+Promise.resolve().then(() => {
+    console.log("B");
+});
+
+console.log("C");
+
+A C B => execute syn first then async
+*******************************************************QUESTION - 3***************************************************************************
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("C");
+});
+
+console.log("D");
+
+A D  C B => sync > Promise > Timeout
+
+
+*******************************************************QUESTION - 4***************************************************************************
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+
+    Promise.resolve().then(() => {
+        console.log("C");
+    });
+
+    console.log("D");
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("E");
+});
+
+console.log("F");
+
+
+A F E B D C // Empty Micro tas Queue then immediately execute 1 macro task and come back to micro task
+
+*******************************************************QUESTION - 5***************************************************************************
+
+console.log("A");
+
+Promise.resolve().then(() => {
+    console.log("B");
+
+    setTimeout(() => {
+        console.log("C");
+    }, 0);
+});
+
+setTimeout(() => {
+    console.log("D");
+}, 0);
+
+console.log("E");
+
+//A E  B D C
+
+
+*******************************************************QUESTION - 6***************************************************************************
+
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+
+    Promise.resolve().then(() => {
+        console.log("C");
+    });
+
+    console.log("D");
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("E");
+
+    setTimeout(() => {
+        console.log("F");
+    }, 0);
+});
+
+console.log("G");
+
+// A G E B D C F
+
+*******************************************************QUESTION - 7***************************************************************************
+
+console.log("A");
+
+Promise.resolve()
+    .then(() => {
+        console.log("B");
+        return "C";
+    })
+    .then((value) => {
+        console.log(value);
+    });
+
+console.log("D");
+
+// A D B C
+
+
+*******************************************************QUESTION - 8***************************************************************************
+console.log("A");
+
+Promise.resolve()
+    .then(() => {
+        console.log("B");
+
+        setTimeout(() => {
+            console.log("C");
+        }, 0);
+
+        return "D";
+    })
+    .then((value) => {
+        console.log(value);
+    });
+
+setTimeout(() => {
+    console.log("E");
+}, 0);
+
+console.log("F");
+
+
+// A F B D  E C -> If there is a .then it is the same promise not a new promise, so immediate execution should happen
+
+
+*******************************************************QUESTION - 9***************************************************************************
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+
+    Promise.resolve()
+        .then(() => {
+            console.log("C");
+        })
+        .then(() => {
+            console.log("D");
+        });
+
+    console.log("E");
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("F");
+});
+
+console.log("G");
+
+// A G F B E C D
+
+*******************************************************QUESTION - 10***************************************************************************
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+
+    Promise.resolve().then(() => {
+        console.log("C");
+    });
+
+    setTimeout(() => {
+        console.log("D");
+    }, 0);
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("E");
+
+    setTimeout(() => {
+        console.log("F");
+    }, 0);
+
+    Promise.resolve().then(() => {
+        console.log("G");
+    });
+});
+
+console.log("H");// A H  E G B C F D
+
+
+
+*******************************************************QUESTION - 11***************************************************************************
