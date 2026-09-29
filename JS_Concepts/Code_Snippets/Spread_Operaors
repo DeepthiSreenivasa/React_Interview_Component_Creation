@@ -1,6 +1,181 @@
+*******************************************************************Question 1*************************************************************
+
 const numbers = [10, 20, 30, 40];
 //expected output newNumbers = [10, 20, 30, 40, 50]
 
 const newNumbers = [...numbers,50]
 
 console.log("New numbers::",newNumbers)
+
+*******************************************************************Question 2*************************************************************
+
+const user = {
+  name: "Deepthi",
+  age: 30,
+  role: "Developer"
+};
+
+const updatedUser = {...user,role:"Architect"}
+
+console.log("Updated User::",updatedUser)
+
+*******************************************************************Question 3*************************************************************
+const frontend = ["React", "Angular"];
+const backend = ["Node", "Java"];
+
+const allSkills = [...frontend,...backend]
+
+console.log("AllSkills::",allSkills)
+*******************************************************************Question 4*************************************************************
+const users = [
+  { id: 1, name: "A", role: "Developer" },
+  { id: 2, name: "B", role: "Tester" },
+  { id: 3, name: "C", role: "Developer" }
+];
+
+const updatedUsers = users.map(item=>{if(item.id==2){
+    return {...item,role:"Senior Tester"}
+}else{
+    return item;
+}})
+
+console.log("updatedUsers::",updatedUsers)
+*******************************************************************Question 5*************************************************************
+const user = {
+  name: "Deepthi",
+  age: 30,
+  address: {
+    city: "Bangalore",
+    country: "India"
+  }
+};
+
+const updatedUser = {...user,address:{...user.address,city:"Mumbai"}}
+
+console.log("updatedUser::",updatedUser)
+*******************************************************************Question 6*************************************************************
+const user = {
+  name: "Deepthi",
+  skills: ["React", "JavaScript"]
+};
+
+const updatedUser ={...user,skills:[...user.skills,"Typescript"]}
+
+console.log("updatedUser::",updatedUser)
+*******************************************************************Question 7*************************************************************
+const state = {
+  products: [
+    { id: 1, name: "Laptop", quantity: 1 },
+    { id: 2, name: "Phone", quantity: 2 }
+  ],
+  total: 3000
+};
+
+const products = state.products.map(item=>{ if(item.id==2){
+    return {...item,quantity:3}
+}else{return item}})
+
+console.log("updatedProducts::",products)
+
+const newState = {
+    products,
+    total:4000
+}
+
+console.log("newState::",newState)
+*******************************************************************Question 8*************************************************************
+const state = {
+    user: {
+        profile: {
+            name: "Deepthi",
+            address: {
+                city: "Bangalore",
+                country: "India"
+            }
+        }
+    }
+};
+
+const updatedState = { ...state, user: { ...state.user, profile: { ...state.user.profile, address: { city: "Mumbai" } } } }
+
+*******************************************************************Question 9*************************************************************
+const state = {
+  users: [
+    {
+      id: 1,
+      name: "A",
+      profile: {
+        city: "Bangalore",
+        skills: ["React"]
+      }
+    },
+    {
+      id: 2,
+      name: "B",
+      profile: {
+        city: "Chennai",
+        skills: ["Angular"]
+      }
+    }
+  ]
+};
+
+let users = state.users;
+
+ users = users.map(item=>{if(item.id==2){
+    return {...item,profile:{...item.profile,city:"Mumbai"}}
+}
+else{
+    return item;
+}
+})
+
+console.log("updatedUsers::",users)
+
+const newState = {users}
+
+console.log("newState::",newState)
+*******************************************************************Question 10*************************************************************
+const state = {
+    cart: {
+        items: [
+            {
+                id: 1,
+                name: "Laptop",
+                quantity: 1,
+                pricing: {
+                    price: 1000,
+                    currency: "USD"
+                }
+            },
+            {
+                id: 2,
+                name: "Phone",
+                quantity: 2,
+                pricing: {
+                    price: 500,
+                    currency: "USD"
+                }
+            }
+        ],
+        totalItems: 3,
+        totalPrice: 2000
+    },
+    user: {
+        name: "Deepthi"
+    }
+};
+
+const updateItems = state.cart.items.map(item => { if (item.id == 2) { return { ...item, quantity: 3, pricing: { ...item.pricing, price: 550 } } } else { return item } })
+
+console.log("updateItems::", updateItems)
+
+const newState = {
+    ...state,cart:{...state.cart,items:updateItems,totalItems:4},user:{...state.user,name:"Deepthi Sreenivasa"}
+}
+
+console.log("New State::",newState)
+
+
+*******************************************************************Question 11*************************************************************
+*******************************************************************Question 12*************************************************************
