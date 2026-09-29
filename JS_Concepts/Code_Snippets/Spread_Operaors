@@ -1,0 +1,6 @@
+const numbers = [10, 20, 30, 40];
+//expected output newNumbers = [10, 20, 30, 40, 50]
+
+const newNumbers = [...numbers,50]
+
+console.log("New numbers::",newNumbers)
