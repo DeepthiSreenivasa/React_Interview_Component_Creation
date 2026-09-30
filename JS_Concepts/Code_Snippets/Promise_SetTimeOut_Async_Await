@@ -1,0 +1,308 @@
+**************************************************Question 1*********************************************************************
+console.log("1");
+
+async function test() {
+  console.log("2");
+
+  await Promise.resolve();
+
+  console.log("3");
+
+  setTimeout(() => {
+    console.log("4");
+  }, 0);
+
+  console.log("5");
+}
+
+test();
+
+console.log("6");
+**************************************************Question 2((TRICKY)*********************************************************************
+console.log("A");
+
+Promise.resolve().then(() => {
+  console.log("B");
+
+  setTimeout(() => {
+    console.log("C");
+  }, 0);
+});
+
+async function test() {
+  console.log("D");
+
+  await Promise.resolve();
+
+  console.log("E");
+
+  Promise.resolve().then(() => {
+    console.log("F");
+  });
+}
+
+test();
+
+console.log("G");
+**************************************************Question 3(TRICKY)*********************************************************************
+console.log("1");
+
+async function test() {
+  console.log("2");
+
+  await Promise.resolve();
+
+  console.log("3");
+
+  setTimeout(() => {
+    console.log("4");
+
+    Promise.resolve().then(() => {
+      console.log("5");
+    });
+  }, 0);
+
+  Promise.resolve().then(() => {
+    console.log("6");
+  });
+
+  console.log("7");
+}
+
+test();
+
+setTimeout(() => {
+  console.log("8");
+}, 0);
+
+console.log("9");
+**************************************************Question 4*********************************************************************
+console.log("A");
+
+async function test() {
+  console.log("B");
+
+  const value = await Promise.resolve("C");
+
+  console.log(value);
+
+  setTimeout(() => {
+    console.log("D");
+  }, 0);
+
+  return "E";
+}
+
+test().then((result) => {
+  console.log(result);
+
+  Promise.resolve().then(() => {
+    console.log("F");
+  });
+});
+
+setTimeout(() => {
+  console.log("G");
+}, 0);
+
+console.log("H");
+**************************************************Question 5(Tricky)*********************************************************************
+console.log("1");
+
+Promise.resolve()
+  .then(() => {
+    console.log("2");
+
+    setTimeout(() => {
+      console.log("3");
+    }, 0);
+
+    return "4";
+  })
+  .then((value) => {
+    console.log(value);
+
+    return Promise.resolve("5");
+  })
+  .then((value) => {
+    console.log(value);
+  });
+
+async function test() {
+  console.log("6");
+
+  await Promise.resolve();
+
+  console.log("7");
+
+  setTimeout(() => {
+    console.log("8");
+  }, 0);
+}
+
+test();
+
+setTimeout(() => {
+  console.log("9");
+}, 0);
+
+console.log("10");
+
+**************************************************Question 6(tricky)*********************************************************************
+console.log("A");
+
+async function first() {
+  console.log("B");
+
+  await Promise.resolve();
+
+  console.log("C");
+
+  setTimeout(() => {
+    console.log("D");
+  }, 0);
+
+  return "E";
+}
+
+async function second() {
+  console.log("F");
+
+  const result = await first();
+
+  console.log(result);
+
+  Promise.resolve().then(() => {
+    console.log("G");
+  });
+}
+
+second();
+
+setTimeout(() => {
+  console.log("H");
+}, 0);
+
+console.log("I");
+**************************************************Question 7*********************************************************************
+console.log("1");
+
+async function test() {
+  console.log("2");
+
+  await Promise.resolve();
+
+  console.log("3");
+
+  setTimeout(() => {
+    console.log("4");
+  }, 0);
+
+  console.log("5");
+}
+
+test();
+
+Promise.resolve().then(() => {
+  console.log("6");
+});
+
+console.log("7");
+**************************************************Question 8*********************************************************************
+console.log("1");
+
+setTimeout(() => {
+  console.log("2");
+
+  Promise.resolve().then(() => {
+    console.log("3");
+  });
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("4");
+});
+
+async function test() {
+  console.log("5");
+
+  await Promise.resolve();
+
+  console.log("6");
+}
+
+test();
+
+console.log("7");
+**************************************************Question 9*********************************************************************
+console.log("A");
+
+async function test() {
+  console.log("B");
+
+  const result = await Promise.resolve("C");
+
+  console.log(result);
+
+  setTimeout(() => {
+    console.log("D");
+
+    Promise.resolve().then(() => {
+      console.log("E");
+    });
+  }, 0);
+
+  return "F";
+}
+
+test().then((value) => {
+  console.log(value);
+
+  setTimeout(() => {
+    console.log("G");
+  }, 0);
+
+  Promise.resolve().then(() => {
+    console.log("H");
+  });
+});
+
+Promise.resolve().then(() => {
+  console.log("I");
+});
+
+setTimeout(() => {
+  console.log("J");
+}, 0);
+
+console.log("K");
+**************************************************Question 10*********************************************************************
+console.log("1");
+
+async function test() {
+  console.log("2");
+
+  await Promise.resolve();
+
+  console.log("3");
+
+  setTimeout(() => {
+    console.log("4");
+  }, 0);
+
+  Promise.resolve().then(() => {
+    console.log("5");
+  });
+}
+
+test();
+
+setTimeout(() => {
+  console.log("6");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("7");
+});
+
+console.log("8");
